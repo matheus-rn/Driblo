@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  driblo:
+    container_name: driblo
+    build: .
+    command: bash -c "yarn && yarn dev"
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/usr/app
