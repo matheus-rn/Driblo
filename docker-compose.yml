@@ -1,11 +1,32 @@
 version: "3"
 
 services:
+  db:
+    container_name: db
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: pgpassword
+    ports:
+      - "5432:5432"
+    networks:
+      - api-backend
   driblo:
     container_name: driblo
+    depends_on:
+      - db
     build: .
     command: bash -c "yarn && yarn dev"
     ports:
       - "8001:8001"
     volumes:
       - .:/usr/app
+    networks:
+      - api-backend
+networks:
+  api-backend:
+    external:
+      name: api-backend    
+
