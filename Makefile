@@ -9,3 +9,6 @@ run-d:
 
 down:
 	docker-compose down
+
+fix:
+	docker-compose exec driblo yarn eslint --fix src --ext .js
