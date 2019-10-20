@@ -1,7 +1,17 @@
 import { Router } from 'express';
 
-const routes = new Router();
+import User from './app/models/User';
 
-routes.get('/', (req, res) => res.json({ message: 'hello' }));
+const routes = new Router();
+routes.get('/', async (req, res) => {
+  const user = await User.create({
+    id: 123,
+    name: 'matheus',
+  }).catch(() => {
+    return { error: 'Usuário já existente' };
+  });
+
+  return res.json(user);
+});
 
 export default routes;
