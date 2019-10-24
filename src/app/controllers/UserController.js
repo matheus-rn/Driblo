@@ -11,12 +11,15 @@ class UserController {
     const id_user = req.body.id;
     const name_user = req.body.name;
 
-    const user = await User.create({
+    const { id, name } = await User.create({
       id: id_user,
       name: name_user,
     });
 
-    return res.json(user);
+    return res.json({
+      id,
+      name,
+    });
   }
 }
 

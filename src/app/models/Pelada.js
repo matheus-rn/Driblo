@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class User extends Model {
+class Pelada extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -15,12 +15,12 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Pelada, {
+    this.belongsToMany(models.User, {
       through: 'PeladaUsers',
       as: 'peladas',
-      foreignKey: 'userId',
+      foreignKey: 'peladaId',
     });
   }
 }
 
-export default User;
+export default Pelada;
