@@ -34,6 +34,7 @@ class UserController {
           model: Pelada,
           as: 'peladas',
           attributes: ['id', 'name'],
+          through: { attributes: [] },
         },
       ],
     });
