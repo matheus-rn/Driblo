@@ -16,7 +16,7 @@ class Pelada extends Model {
 
   static associate(models) {
     this.belongsToMany(models.User, {
-      through: 'PeladaUsers',
+      through: 'pelada_users',
       as: 'peladas',
       foreignKey: 'peladaId',
     });

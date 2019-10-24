@@ -1,4 +1,5 @@
 import User from '../models/User';
+import Pelada from '../models/Pelada';
 
 class UserController {
   async store(req, res) {
@@ -20,6 +21,24 @@ class UserController {
       id,
       name,
     });
+  }
+
+  async index(req, res) {
+    const user = await User.findOne({
+      where: {
+        id: 123,
+      },
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: Pelada,
+          as: 'peladas',
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
+
+    return res.json({ user });
   }
 }
 

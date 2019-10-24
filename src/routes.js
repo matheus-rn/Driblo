@@ -9,5 +9,6 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/pelada', PeladaController.store);
 routes.post('/peladaUser', PeladaUserController.store);
+routes.get('/users', UserController.index);
 
 export default routes;
