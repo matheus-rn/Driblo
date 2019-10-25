@@ -6,6 +6,7 @@ class PeladaUser extends Model {
       {
         userId: Sequelize.INTEGER,
         peladaId: Sequelize.INTEGER,
+        userPresent: Sequelize.BOOLEAN,
       },
       {
         sequelize,

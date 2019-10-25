@@ -1,12 +1,13 @@
 import User from '../models/User';
 import Pelada from '../models/Pelada';
+import PeladaUser from '../models/PeladaUser';
 
 class UserController {
-  async store(req, res) {
+  async createUser(req, res) {
     const userExists = await User.findOne({ where: { id: req.body.id } });
 
     if (userExists) {
-      return res.status(400).json({ error: 'Id existe' });
+      return res.status(400).json({ error: 'Id existente' });
     }
 
     const id_user = req.body.id;
@@ -23,10 +24,16 @@ class UserController {
     });
   }
 
-  async index(req, res) {
+  async searchUser(req, res) {
+    const userExists = await User.findOne({ where: { id: req.params.id } });
+
+    if (!userExists) {
+      return res.status(400).json({ error: 'Usuário não existe' });
+    }
+
     const user = await User.findOne({
       where: {
-        id: 123,
+        id: req.params.id,
       },
       attributes: ['id', 'name'],
       include: [
@@ -38,8 +45,23 @@ class UserController {
         },
       ],
     });
+    const json = JSON.stringify(user);
+    const result_user = JSON.parse(json);
 
-    return res.json({ user });
+    result_user.peladas = await Promise.all(
+      result_user.peladas.map(async pelada => {
+        const { userPresent } = await PeladaUser.findOne({
+          where: {
+            user_id: user.id,
+            pelada_id: pelada.id,
+          },
+        });
+        pelada.userPresent = userPresent;
+        return pelada;
+      })
+    );
+
+    return res.json(result_user);
   }
 }
 

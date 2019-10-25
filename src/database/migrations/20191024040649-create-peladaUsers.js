@@ -9,10 +9,13 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'users',
           key: 'id',
           as: 'userId',
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
         },
       },
       pelada_id: {
@@ -22,7 +25,14 @@ module.exports = {
           model: 'peladas',
           key: 'id',
           as: 'peladaId',
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
         },
+      },
+      user_present: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       created_at: {
         type: Sequelize.DATE,
