@@ -63,6 +63,32 @@ class UserController {
 
     return res.json(result_user);
   }
+
+  async update(req, res) {
+    const userExists = await User.findOne({ where: { id: req.params.id } });
+
+    if (!userExists) {
+      return res.status(400).json({ error: 'Usuário não existente' });
+    }
+
+    const update_user = await User.update(req.body, {
+      where: { id: req.params.id },
+    });
+
+    return res.json(update_user);
+  }
+
+  async destroy(req, res) {
+    const userExists = await User.findOne({ where: { id: req.params.id } });
+
+    if (!userExists) {
+      return res.status(400).json({ error: 'Usuário não existente' });
+    }
+
+    const delete_user = await User.destroy({ where: { id: req.params.id } });
+
+    return res.json({ delete_user });
+  }
 }
 
 export default new UserController();

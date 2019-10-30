@@ -8,6 +8,9 @@ const routes = new Router();
 
 routes.post('/users', UserController.store);
 routes.get('/users/:id', UserController.index);
+routes.delete('/users/:id', UserController.destroy);
+routes.put('/users/:id', UserController.update);
+
 routes.post('/pelada', PeladaController.store);
 routes.get('/pelada/:id', PeladaController.index);
 routes.post('/peladaUser', PeladaUserController.addUserPelada);
