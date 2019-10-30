@@ -1,7 +1,7 @@
 import PeladaUser from '../models/PeladaUser';
 
 class PeladaUserController {
-  async store(req, res) {
+  async addUserPelada(req, res) {
     const { userId, peladaId, userPresent } = await PeladaUser.create(req.body);
 
     return res.json({

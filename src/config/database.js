@@ -1,9 +1,9 @@
 module.exports = {
   dialect: 'postgres',
-  host: 'db',
+  host: 'db-driblo',
   username: 'username',
   password: 'pgpassword',
-  database: 'db',
+  database: 'dbdriblo',
   operatorAliases: 'false',
   define: {
     timestamp: true,

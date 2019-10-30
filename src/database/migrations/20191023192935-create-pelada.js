@@ -11,6 +11,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      location: {
+        type: Sequelize.STRING,
+      },
+      field_type: {
+        type: Sequelize.STRING,
+      },
+      number_goals: {
+        type: Sequelize.INTEGER,
+      },
+      time_duration: {
+        type: Sequelize.INTEGER,
+      },
+      players_limit: {
+        type: Sequelize.INTEGER,
+      },
+      date_hour_pelada: {
+        type: Sequelize.DATE,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

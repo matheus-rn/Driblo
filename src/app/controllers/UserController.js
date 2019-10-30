@@ -3,7 +3,7 @@ import Pelada from '../models/Pelada';
 import PeladaUser from '../models/PeladaUser';
 
 class UserController {
-  async createUser(req, res) {
+  async store(req, res) {
     const userExists = await User.findOne({ where: { id: req.body.id } });
 
     if (userExists) {
@@ -24,7 +24,7 @@ class UserController {
     });
   }
 
-  async searchUser(req, res) {
+  async index(req, res) {
     const userExists = await User.findOne({ where: { id: req.params.id } });
 
     if (!userExists) {

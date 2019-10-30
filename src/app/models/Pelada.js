@@ -5,6 +5,12 @@ class Pelada extends Model {
     super.init(
       {
         name: Sequelize.STRING,
+        location: Sequelize.STRING,
+        field_type: Sequelize.STRING,
+        number_goals: Sequelize.INTEGER,
+        time_duration: Sequelize.INTEGER,
+        date_hour_pelada: Sequelize.DATE,
+        players_limit: Sequelize.INTEGER,
       },
       {
         sequelize,

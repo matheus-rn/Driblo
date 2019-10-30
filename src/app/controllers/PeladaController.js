@@ -3,16 +3,13 @@ import User from '../models/User';
 import PeladaUser from '../models/PeladaUser';
 
 class PeladaController {
-  async createPelada(req, res) {
-    const { id, name } = await Pelada.create(req.body);
+  async store(req, res) {
+    const pelada = await Pelada.create(req.body);
 
-    return res.json({
-      id,
-      name,
-    });
+    return res.json(pelada);
   }
 
-  async searchPelada(req, res) {
+  async index(req, res) {
     const pelada = await Pelada.findOne({
       where: {
         id: req.params.id,
@@ -27,6 +24,7 @@ class PeladaController {
         },
       ],
     });
+
     const json = JSON.stringify(pelada);
     const result_pelada = JSON.parse(json);
 

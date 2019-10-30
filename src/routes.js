@@ -6,10 +6,10 @@ import PeladaUserController from './app/controllers/PeladaUserController';
 
 const routes = new Router();
 
-routes.post('/users', UserController.createUser);
-routes.get('/users/:id', UserController.searchUser);
-routes.post('/pelada', PeladaController.createPelada);
-routes.get('/pelada/:id', PeladaController.searchPelada);
-routes.post('/peladaUser', PeladaUserController.store);
+routes.post('/users', UserController.store);
+routes.get('/users/:id', UserController.index);
+routes.post('/pelada', PeladaController.store);
+routes.get('/pelada/:id', PeladaController.index);
+routes.post('/peladaUser', PeladaUserController.addUserPelada);
 
 export default routes;
