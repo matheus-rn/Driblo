@@ -17,5 +17,13 @@ routes.delete('/pelada/:id', PeladaController.destroy);
 routes.put('/pelada/:id', PeladaController.update);
 
 routes.post('/peladaUser', UserPeladaController.addUserPelada);
+routes.put(
+  '/users/:userId/pelada/:peladaId',
+  UserPeladaController.confirmPresent
+);
+routes.delete(
+  '/users/:userId/pelada/:peladaId',
+  UserPeladaController.removeUserPelada
+);
 
 export default routes;
