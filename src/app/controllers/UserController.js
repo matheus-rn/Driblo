@@ -1,6 +1,6 @@
 import User from '../models/User';
 import Pelada from '../models/Pelada';
-import PeladaUser from '../models/PeladaUser';
+import UserPelada from '../models/UserPelada';
 
 class UserController {
   async store(req, res) {
@@ -50,7 +50,7 @@ class UserController {
 
     result_user.peladas = await Promise.all(
       result_user.peladas.map(async pelada => {
-        const { userPresent } = await PeladaUser.findOne({
+        const { userPresent } = await UserPelada.findOne({
           where: {
             user_id: user.id,
             pelada_id: pelada.id,

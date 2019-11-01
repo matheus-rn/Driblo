@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import UserController from './app/controllers/UserController';
 import PeladaController from './app/controllers/PeladaController';
-import PeladaUserController from './app/controllers/PeladaUserController';
+import UserPeladaController from './app/controllers/UserPeladaController';
 
 const routes = new Router();
 
@@ -13,6 +13,9 @@ routes.put('/users/:id', UserController.update);
 
 routes.post('/pelada', PeladaController.store);
 routes.get('/pelada/:id', PeladaController.index);
-routes.post('/peladaUser', PeladaUserController.addUserPelada);
+routes.delete('/pelada/:id', PeladaController.destroy);
+routes.put('/pelada/:id', PeladaController.update);
+
+routes.post('/peladaUser', UserPeladaController.addUserPelada);
 
 export default routes;

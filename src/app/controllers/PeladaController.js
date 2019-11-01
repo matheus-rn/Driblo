@@ -1,6 +1,6 @@
 import Pelada from '../models/Pelada';
 import User from '../models/User';
-import PeladaUser from '../models/PeladaUser';
+import UserPelada from '../models/UserPelada';
 
 class PeladaController {
   async store(req, res) {
@@ -10,6 +10,12 @@ class PeladaController {
   }
 
   async index(req, res) {
+    const peladaExist = await Pelada.findOne({ where: { id: req.params.id } });
+
+    if (!peladaExist) {
+      return res.status(400).json({ error: 'Pelada não existe' });
+    }
+
     const pelada = await Pelada.findOne({
       where: {
         id: req.params.id,
@@ -30,7 +36,7 @@ class PeladaController {
 
     result_pelada.users = await Promise.all(
       result_pelada.users.map(async user => {
-        const { userPresent } = await PeladaUser.findOne({
+        const { userPresent } = await UserPelada.findOne({
           where: {
             user_id: user.id,
             pelada_id: pelada.id,
@@ -42,6 +48,35 @@ class PeladaController {
     );
 
     return res.json(result_pelada);
+  }
+
+  async update(req, res) {
+    const peladaExist = await Pelada.findOne({ where: { id: req.params.id } });
+
+    if (!peladaExist) {
+      return res.status(400).json({ error: 'Pelada não existente' });
+    }
+
+    const response = await Pelada.update(req.body, {
+      where: { id: req.params.id },
+    });
+
+    return res.json(response);
+  }
+
+  async destroy(req, res) {
+    const peladaExists = await Pelada.findOne({ where: { id: req.params.id } });
+
+    if (!peladaExists) {
+      return res.status(400).json({ error: 'Pelada não existente' });
+    }
+
+    const response = await Pelada.destroy({
+      where: { id: req.params.id },
+      cascade: true,
+    });
+
+    return res.json({ response });
   }
 }
 

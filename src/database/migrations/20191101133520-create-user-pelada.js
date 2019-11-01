@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('pelada_users', {
+    return queryInterface.createTable('user_peladas', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -14,9 +14,9 @@ module.exports = {
           model: 'users',
           key: 'id',
           as: 'userId',
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       pelada_id: {
         type: Sequelize.INTEGER,
@@ -25,9 +25,9 @@ module.exports = {
           model: 'peladas',
           key: 'id',
           as: 'peladaId',
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       user_present: {
         type: Sequelize.BOOLEAN,
@@ -46,6 +46,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('pelada_users');
+    return queryInterface.dropTable('user_peladas');
   },
 };

@@ -2,10 +2,10 @@ import Sequelize from 'sequelize';
 
 import User from '../app/models/User';
 import Pelada from '../app/models/Pelada';
-import PeladaUser from '../app/models/PeladaUser';
+import UserPelada from '../app/models/UserPelada';
 import databaseConfig from '../config/database';
 
-const models = [User, Pelada, PeladaUser];
+const models = [User, Pelada, UserPelada];
 
 class Database {
   constructor() {
