@@ -3,6 +3,8 @@ import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import PeladaController from './app/controllers/PeladaController';
 import UserPeladaController from './app/controllers/UserPeladaController';
+import TeamController from './app/controllers/TeamController';
+import GoalController from './app/controllers/GoalController';
 
 const routes = new Router();
 
@@ -15,6 +17,10 @@ routes.post('/pelada', PeladaController.store);
 routes.get('/pelada/:id', PeladaController.index);
 routes.delete('/pelada/:id', PeladaController.destroy);
 routes.put('/pelada/:id', PeladaController.update);
+
+routes.post('/teams', TeamController.store);
+
+routes.post('/goals', GoalController.store);
 
 routes.post('/peladaUser', UserPeladaController.addUserPelada);
 routes.put(

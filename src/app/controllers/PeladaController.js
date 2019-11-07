@@ -1,6 +1,7 @@
 import Pelada from '../models/Pelada';
 import User from '../models/User';
 import UserPelada from '../models/UserPelada';
+import Team from '../models/Team';
 
 class PeladaController {
   async store(req, res) {
@@ -28,6 +29,11 @@ class PeladaController {
           attributes: ['id', 'name'],
           through: { attributes: [] },
         },
+        {
+          model: Team,
+          as: 'teams',
+          attributes: ['id', 'name']
+        }
       ],
     });
 

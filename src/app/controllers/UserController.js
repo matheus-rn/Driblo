@@ -1,6 +1,7 @@
 import User from '../models/User';
 import Pelada from '../models/Pelada';
 import UserPelada from '../models/UserPelada';
+import Goal from '../models/Goal';
 
 class UserController {
   async store(req, res) {
@@ -43,6 +44,11 @@ class UserController {
           attributes: ['id', 'name'],
           through: { attributes: [] },
         },
+        {
+          model: Goal,
+          as: 'goals',
+          attributes: ['id', 'teamId']
+        }
       ],
     });
     const json = JSON.stringify(user);

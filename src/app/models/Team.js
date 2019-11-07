@@ -1,10 +1,11 @@
 import Sequelize, { Model } from 'sequelize';
 
-class User extends Model {
+class Team extends Model {
   static init(sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
+        peladaId: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -15,16 +16,15 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Pelada, {
-      through: 'user_peladas',
-      as: 'peladas',
-      foreignKey: 'userId',
+    this.belongsTo(models.Pelada, {
+        as: 'pelada',
+        foreignKey: 'peladaId'
     });
     this.hasMany(models.Goal, {
       as: 'goals',
-      foreignKey: 'goalscorerId'
+      foreignKey: 'teamId'
     });
   }
 }
 
-export default User;
+export default Team;
