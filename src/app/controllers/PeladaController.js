@@ -32,8 +32,8 @@ class PeladaController {
         {
           model: Team,
           as: 'teams',
-          attributes: ['id', 'name']
-        }
+          attributes: ['id', 'name'],
+        },
       ],
     });
 

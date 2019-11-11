@@ -6,7 +6,6 @@ class GoalController {
 
     return res.json(goal);
   }
-
 }
 
 export default new GoalController();

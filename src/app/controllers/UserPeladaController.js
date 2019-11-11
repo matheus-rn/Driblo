@@ -1,4 +1,7 @@
+import Sequelize from 'sequelize';
 import UserPelada from '../models/UserPelada';
+import Pelada from '../models/Pelada';
+import User from '../models/User';
 
 class UserPeladaController {
   async addUserPelada(req, res) {
@@ -53,6 +56,44 @@ class UserPeladaController {
     );
 
     return res.json({ response });
+  }
+
+  async listPlayersPresent(req, res) {
+    const peladaExist = await Pelada.findOne({ where: { id: req.params.id } });
+
+    if (!peladaExist) {
+      return res.status(400).json({ error: 'Pelada não existe' });
+    }
+
+    const usersPresents = await UserPelada.findAll({
+      where: { user_present: true },
+    });
+
+    const listIdUser = usersPresents.map(user => user.userId);
+
+    const { Op } = Sequelize;
+
+    const pelada = await Pelada.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: User,
+          as: 'users',
+          where: {
+            id: {
+              [Op.or]: listIdUser,
+            },
+          },
+          attributes: ['id', 'name'],
+          through: { attributes: [] },
+        },
+      ],
+    });
+
+    return res.json(pelada);
   }
 }
 

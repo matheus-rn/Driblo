@@ -1,7 +1,5 @@
 import User from '../models/User';
 import Pelada from '../models/Pelada';
-import UserPelada from '../models/UserPelada';
-import Goal from '../models/Goal';
 
 class UserController {
   async store(req, res) {
@@ -11,18 +9,13 @@ class UserController {
       return res.status(400).json({ error: 'Id existente' });
     }
 
-    const id_user = req.body.id;
-    const name_user = req.body.name;
-
-    const { id, name } = await User.create({
-      id: id_user,
-      name: name_user,
+    const user = await User.create({
+      id: req.body.id,
+      name: req.body.name,
+      photoUrl: req.body.photoUrl,
     });
 
-    return res.json({
-      id,
-      name,
-    });
+    return res.json(user);
   }
 
   async index(req, res) {
@@ -41,33 +34,15 @@ class UserController {
         {
           model: Pelada,
           as: 'peladas',
-          attributes: ['id', 'name'],
+          attributes: {
+            exclude: ['updatedAt', 'createdAt'],
+          },
           through: { attributes: [] },
         },
-        {
-          model: Goal,
-          as: 'goals',
-          attributes: ['id', 'teamId']
-        }
       ],
     });
-    const json = JSON.stringify(user);
-    const result_user = JSON.parse(json);
 
-    result_user.peladas = await Promise.all(
-      result_user.peladas.map(async pelada => {
-        const { userPresent } = await UserPelada.findOne({
-          where: {
-            user_id: user.id,
-            pelada_id: pelada.id,
-          },
-        });
-        pelada.userPresent = userPresent;
-        return pelada;
-      })
-    );
-
-    return res.json(result_user);
+    return res.json(user);
   }
 
   async update(req, res) {

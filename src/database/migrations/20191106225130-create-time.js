@@ -1,40 +1,39 @@
 module.exports = {
-    up: (queryInterface, Sequelize) => {
-      return queryInterface.createTable('teams', {
-        id: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          primaryKey: true,
-          autoIncrement: true,
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('teams', {
+      id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      pelada_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'peladas',
+          key: 'id',
+          as: 'peladaId',
         },
-        name: {
-          type: Sequelize.STRING,
-          allowNull: false,
-        },
-        pelada_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-              model: 'peladas',
-              key: 'id',
-              as: 'peladaId',
-            },
-            onUpdate: 'CASCADE',
-            onDelete: 'CASCADE',
-          },
-        created_at: {
-          type: Sequelize.DATE,
-          allowNull: false,
-        },
-        updated_at: {
-          type: Sequelize.DATE,
-          allowNull: false,
-        },
-      });
-    },
-  
-    down: queryInterface => {
-      return queryInterface.dropTable('teams');
-    },
-  };
-  
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+    });
+  },
+
+  down: queryInterface => {
+    return queryInterface.dropTable('teams');
+  },
+};

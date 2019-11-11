@@ -17,12 +17,12 @@ class Team extends Model {
 
   static associate(models) {
     this.belongsTo(models.Pelada, {
-        as: 'pelada',
-        foreignKey: 'peladaId'
+      as: 'pelada',
+      foreignKey: 'peladaId',
     });
     this.hasMany(models.Goal, {
       as: 'goals',
-      foreignKey: 'teamId'
+      foreignKey: 'teamId',
     });
   }
 }

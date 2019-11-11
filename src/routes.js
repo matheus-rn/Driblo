@@ -23,6 +23,10 @@ routes.post('/teams', TeamController.store);
 routes.post('/goals', GoalController.store);
 
 routes.post('/peladaUser', UserPeladaController.addUserPelada);
+routes.get(
+  '/pelada/:id/users-presents',
+  UserPeladaController.listPlayersPresent
+);
 routes.put(
   '/users/:userId/pelada/:peladaId',
   UserPeladaController.confirmPresent
