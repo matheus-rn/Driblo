@@ -26,7 +26,7 @@ class PeladaController {
         {
           model: User,
           as: 'users',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'photoUrl'],
           through: { attributes: [] },
         },
         {

@@ -80,14 +80,15 @@ class UserPeladaController {
       attributes: ['id', 'name'],
       include: [
         {
+          required: false,
           model: User,
           as: 'users',
           where: {
             id: {
-              [Op.or]: listIdUser,
+              [Op.or]: listIdUser.length ? listIdUser : [null],
             },
           },
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'photoUrl'],
           through: { attributes: [] },
         },
       ],

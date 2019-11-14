@@ -5,6 +5,7 @@ class Goal extends Model {
     super.init(
       {
         goalscorerId: Sequelize.INTEGER,
+        goalassistantId: Sequelize.INTEGER,
         teamId: Sequelize.INTEGER,
       },
       {

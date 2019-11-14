@@ -14,6 +14,24 @@ module.exports = {
       photo_url: {
         type: Sequelize.STRING,
       },
+      goals: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
+
+      victories: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
+
+      assistances: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
+      score: {
+        allowNull: true,
+        type: Sequelize.FLOAT,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
