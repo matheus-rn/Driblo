@@ -31,6 +31,10 @@ class Pelada extends Model {
       as: 'teams',
       foreignKey: 'peladaId',
     });
+    this.hasMany(models.Rule, {
+      as: 'rule',
+      foreignKey: 'peladaId',
+    });
   }
 }
 

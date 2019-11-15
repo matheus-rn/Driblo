@@ -8,6 +8,7 @@ import TeamController from './app/controllers/TeamController';
 import GoalController from './app/controllers/GoalController';
 import { multerUploads } from './app/middlewares/multer';
 import FileController from './app/controllers/FileController';
+import RuleController from './app/controllers/RuleController';
 
 const routes = new Router();
 
@@ -49,5 +50,10 @@ routes.delete(
 );
 
 routes.post('/files', multerUploads, FileController.store);
+
+routes.post('/rules', RuleController.store);
+routes.get('/pelada/:peladaId/rules', RuleController.index);
+routes.put('/rules/:id', RuleController.update);
+routes.delete('/rules/:id', RuleController.destroy);
 
 export default routes;
