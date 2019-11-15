@@ -38,7 +38,7 @@ class UserPeladaController {
     return res.json({ response });
   }
 
-  async confirmPresent(req, res) {
+  async togglePresence(req, res) {
     const peladaUser = await UserPelada.findOne({
       where: { user_id: req.params.userId, pelada_id: req.params.peladaId },
     });
