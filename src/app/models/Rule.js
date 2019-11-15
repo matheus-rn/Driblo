@@ -1,10 +1,10 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Team extends Model {
+class Rule extends Model {
   static init(sequelize) {
     super.init(
       {
-        name: Sequelize.STRING,
+        rule: Sequelize.STRING,
         peladaId: Sequelize.INTEGER,
       },
       {
@@ -20,11 +20,7 @@ class Team extends Model {
       as: 'pelada',
       foreignKey: 'peladaId',
     });
-    this.hasMany(models.Goal, {
-      as: 'goals',
-      foreignKey: 'teamId',
-    });
   }
 }
 
-export default Team;
+export default Rule;

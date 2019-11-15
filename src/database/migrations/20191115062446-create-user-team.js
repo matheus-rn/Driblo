@@ -1,23 +1,30 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('teams', {
+    return queryInterface.createTable('user_teams', {
       id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
+        allowNull: false,
         autoIncrement: true,
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      pelada_id: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'peladas',
+          model: 'users',
           key: 'id',
-          as: 'peladaId',
+          as: 'userId',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+      team_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'teams',
+          key: 'id',
+          as: 'teamId',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -34,6 +41,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('teams');
+    return queryInterface.dropTable('user_teams');
   },
 };

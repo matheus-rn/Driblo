@@ -5,6 +5,7 @@ class User extends Model {
     super.init(
       {
         name: Sequelize.STRING,
+        photoUrl: Sequelize.STRING,
       },
       {
         sequelize,
@@ -22,7 +23,11 @@ class User extends Model {
     });
     this.hasMany(models.Goal, {
       as: 'goals',
-      foreignKey: 'goalscorerId'
+      foreignKey: 'goalscorerId',
+    });
+    this.hasMany(models.Goal, {
+      as: 'assistance',
+      foreignKey: 'goalassistantId',
     });
   }
 }

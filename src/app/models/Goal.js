@@ -5,7 +5,7 @@ class Goal extends Model {
     super.init(
       {
         goalscorerId: Sequelize.INTEGER,
-        assistantId: Sequelize.INTEGER,
+        goalassistantId: Sequelize.INTEGER,
         teamId: Sequelize.INTEGER,
       },
       {
@@ -18,17 +18,19 @@ class Goal extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, {
-        as: 'goalscorer',
-        foreignKey: 'goalscorerId'
+      as: 'goalscorer',
+      foreignKey: 'goalscorerId',
     });
+
     this.belongsTo(models.User, {
-      as: 'assistant',
-      foreignKey: 'assistantId'
-  });
+      as: 'goalassistant',
+      foreignKey: 'goalassistantId',
+    });
+
     this.belongsTo(models.Team, {
       as: 'team',
-      foreignKey: 'teamId'
-  });
+      foreignKey: 'teamId',
+    });
   }
 }
 

@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes';
+import { cloudinaryConfig } from './config/cloundinaryConfig';
 import './database';
 
 class App {
@@ -12,6 +13,8 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(express.urlencoded({ extended: true }));
+    this.server.use('*', cloudinaryConfig);
   }
 
   routes() {

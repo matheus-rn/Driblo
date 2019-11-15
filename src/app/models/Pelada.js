@@ -5,12 +5,13 @@ class Pelada extends Model {
     super.init(
       {
         name: Sequelize.STRING,
+        photoUrl: Sequelize.STRING,
         location: Sequelize.STRING,
-        field_type: Sequelize.STRING,
-        number_goals: Sequelize.INTEGER,
-        time_duration: Sequelize.INTEGER,
-        date_hour_pelada: Sequelize.DATE,
-        players_limit: Sequelize.INTEGER,
+        fieldType: Sequelize.STRING,
+        numberGoals: Sequelize.INTEGER,
+        timeDuration: Sequelize.INTEGER,
+        dateHourPelada: Sequelize.DATE,
+        playersLimit: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -28,7 +29,11 @@ class Pelada extends Model {
     });
     this.hasMany(models.Team, {
       as: 'teams',
-      foreignKey: 'peladaId'
+      foreignKey: 'peladaId',
+    });
+    this.hasMany(models.Rule, {
+      as: 'rule',
+      foreignKey: 'peladaId',
     });
   }
 }

@@ -6,7 +6,24 @@ import Team from '../models/Team';
 class GoalController {
   async store(req, res) {
     const goal = await Goal.create(req.body);
+    const userGoal = await UserPelada.findOne({
+      where: { user_id: req.body.goalscorerId, pelada_id: req.body.peladaId },
+    });
 
+    await userGoal.update({
+      score: userGoal.score + 8,
+      goals: userGoal.goals + 1,
+    });
+
+    if (goal.goalassistantId) {
+      const userAssistant = await UserPelada.findOne({
+        where: { user_id: goal.goalassistantId, pelada_id: req.body.peladaId },
+      });
+      await userAssistant.update({
+        score: userAssistant.score + 5,
+        assistances: userGoal.assistances + 1,
+      });
+    }
     return res.json(goal);
   }
 
