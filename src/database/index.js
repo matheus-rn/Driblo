@@ -6,8 +6,9 @@ import UserPelada from '../app/models/UserPelada';
 import Team from '../app/models/Team';
 import Goal from '../app/models/Goal';
 import databaseConfig from '../config/database';
+import UserTeam from '../app/models/UserTeam';
 
-const models = [User, Pelada, UserPelada, Team, Goal];
+const models = [User, Pelada, UserPelada, Team, Goal, UserTeam];
 
 class Database {
   constructor() {

@@ -3,6 +3,7 @@ import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import PeladaController from './app/controllers/PeladaController';
 import UserPeladaController from './app/controllers/UserPeladaController';
+import UserTeamController from './app/controllers/UserTeamController';
 import TeamController from './app/controllers/TeamController';
 import GoalController from './app/controllers/GoalController';
 import { multerUploads } from './app/middlewares/multer';
@@ -21,6 +22,8 @@ routes.delete('/pelada/:id', PeladaController.destroy);
 routes.put('/pelada/:id', PeladaController.update);
 
 routes.post('/teams', TeamController.store);
+routes.post('/userTeam', UserTeamController.addUserTeam);
+routes.delete('/users/:userId/team/:teamId', UserTeamController.removeUserTeam);
 
 routes.post('/goals', GoalController.store);
 

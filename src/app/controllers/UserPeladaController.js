@@ -139,6 +139,7 @@ class UserPeladaController {
           : null;
       })
     );
+
     highlights.topScore = highlights.topScore.filter(n => n);
 
     highlights.topGoals = await Promise.all(
