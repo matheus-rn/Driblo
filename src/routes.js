@@ -23,7 +23,7 @@ routes.post('/teams', TeamController.store);
 routes.post('/goals', GoalController.store);
 routes.delete('/goals/:id', GoalController.destroy);
 routes.put('/goals/:id', GoalController.update);
-// routes.get('/goals/:id', GoalController.index);
+routes.get('/goals/:id', GoalController.index);
 
 routes.post('/peladaUser', UserPeladaController.addUserPelada);
 routes.put(

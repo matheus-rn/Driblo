@@ -5,6 +5,7 @@ class Goal extends Model {
     super.init(
       {
         goalscorerId: Sequelize.INTEGER,
+        assistantId: Sequelize.INTEGER,
         teamId: Sequelize.INTEGER,
       },
       {
@@ -20,6 +21,10 @@ class Goal extends Model {
         as: 'goalscorer',
         foreignKey: 'goalscorerId'
     });
+    this.belongsTo(models.User, {
+      as: 'assistant',
+      foreignKey: 'assistantId'
+  });
     this.belongsTo(models.Team, {
       as: 'team',
       foreignKey: 'teamId'

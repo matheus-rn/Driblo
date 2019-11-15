@@ -18,6 +18,17 @@ module.exports = {
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE',
         },
+        assistant_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'users',
+            key: 'id',
+            as: 'assistantId',
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+        },
         team_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
