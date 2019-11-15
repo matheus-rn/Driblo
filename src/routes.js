@@ -36,6 +36,7 @@ routes.get(
   '/pelada/:id/users-presents',
   UserPeladaController.listPlayersPresent
 );
+routes.post('/pelada/:id/formTeams', UserTeamController.formTeams);
 
 routes.get(
   '/pelada/:id/highlights-of-game',
