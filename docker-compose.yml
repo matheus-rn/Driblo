@@ -1,11 +1,32 @@
 version: "3"
 
 services:
+  db-driblo:
+    container_name: db-driblo
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: dbdriblo
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: pgpassword
+    ports:
+      - "5433:5432"
+    networks:
+      - api-backend
   driblo:
     container_name: driblo
+    depends_on:
+      - db-driblo
     build: .
-    command: bash -c "yarn && yarn dev"
+    command: bash -c "yarn && yarn sequelize db:migrate && yarn dev"
     ports:
       - "8001:8001"
     volumes:
       - .:/usr/app
+    networks:
+      - api-backend
+networks:
+  api-backend:
+    external:
+      name: api-backend    
+
