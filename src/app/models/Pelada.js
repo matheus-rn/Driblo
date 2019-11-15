@@ -5,6 +5,7 @@ class Pelada extends Model {
     super.init(
       {
         name: Sequelize.STRING,
+        photoUrl: Sequelize.STRING,
         location: Sequelize.STRING,
         fieldType: Sequelize.STRING,
         numberGoals: Sequelize.INTEGER,

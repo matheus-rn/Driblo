@@ -11,6 +11,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      photo_url: {
+        type: Sequelize.STRING,
+      },
       location: {
         type: Sequelize.STRING,
       },

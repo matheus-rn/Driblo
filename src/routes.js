@@ -5,6 +5,8 @@ import PeladaController from './app/controllers/PeladaController';
 import UserPeladaController from './app/controllers/UserPeladaController';
 import TeamController from './app/controllers/TeamController';
 import GoalController from './app/controllers/GoalController';
+import { multerUploads } from './app/middlewares/multer';
+import FileController from './app/controllers/FileController';
 
 const routes = new Router();
 
@@ -42,5 +44,7 @@ routes.delete(
   '/users/:userId/pelada/:peladaId',
   UserPeladaController.removeUserPelada
 );
+
+routes.post('/files', multerUploads, FileController.store);
 
 export default routes;
