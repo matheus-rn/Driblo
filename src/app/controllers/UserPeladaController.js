@@ -98,7 +98,61 @@ class UserPeladaController {
   }
 
   async highlightsOfGame(req, res) {
-    return res.json(1);
+    const highlights = {
+      topScore: [],
+      topAssistants: [],
+      topGoals: [],
+    };
+
+    const users = await UserPelada.findAll();
+    const maxValueScore = users.reduce((a, b) => {
+      return Math.max(a.score, b.score);
+    });
+
+    const maxValueGoals = users.reduce((a, b) => {
+      return Math.max(a.goals, b.goals);
+    });
+
+    const maxValueAssistants = users.reduce((a, b) => {
+      return Math.max(a.assistances, b.assistances);
+    });
+
+    const topUser = async id => {
+      const user = await User.findOne({
+        where: {
+          id,
+        },
+        attributes: {
+          exclude: ['createdAt', 'updatedAt'],
+        },
+      });
+      return user;
+    };
+
+    highlights.topScore = await Promise.all(
+      users.map(async user => {
+        return user.score === maxValueScore ? topUser(user.userId) : null;
+      })
+    );
+    highlights.topScore = highlights.topScore.filter(n => n);
+
+    highlights.topGoals = await Promise.all(
+      users.map(async user => {
+        return user.goals === maxValueGoals ? topUser(user.userId) : null;
+      })
+    );
+    highlights.topGoals = highlights.topGoals.filter(n => n);
+
+    highlights.topAssistants = await Promise.all(
+      users.map(async user => {
+        return user.assistances === maxValueAssistants
+          ? topUser(user.userId)
+          : null;
+      })
+    );
+    highlights.topAssistants = highlights.topAssistants.filter(n => n);
+
+    return res.json(highlights);
   }
 }
 
