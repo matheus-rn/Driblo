@@ -117,7 +117,7 @@ class UserPeladaController {
       return Math.max(a.assistances, b.assistances);
     });
 
-    const topUser = async id => {
+    const topUser = async (id, value) => {
       const user = await User.findOne({
         where: {
           id,
@@ -126,19 +126,26 @@ class UserPeladaController {
           exclude: ['createdAt', 'updatedAt'],
         },
       });
-      return user;
+      const json = JSON.stringify(user);
+      const result_user = JSON.parse(json);
+      result_user.value = value;
+      return result_user;
     };
 
     highlights.topScore = await Promise.all(
       users.map(async user => {
-        return user.score === maxValueScore ? topUser(user.userId) : null;
+        return user.score === maxValueScore
+          ? topUser(user.userId, maxValueScore)
+          : null;
       })
     );
     highlights.topScore = highlights.topScore.filter(n => n);
 
     highlights.topGoals = await Promise.all(
       users.map(async user => {
-        return user.goals === maxValueGoals ? topUser(user.userId) : null;
+        return user.goals === maxValueGoals
+          ? topUser(user.userId, maxValueGoals)
+          : null;
       })
     );
     highlights.topGoals = highlights.topGoals.filter(n => n);
@@ -146,7 +153,7 @@ class UserPeladaController {
     highlights.topAssistants = await Promise.all(
       users.map(async user => {
         return user.assistances === maxValueAssistants
-          ? topUser(user.userId)
+          ? topUser(user.userId, maxValueAssistants)
           : null;
       })
     );
