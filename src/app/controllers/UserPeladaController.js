@@ -96,6 +96,10 @@ class UserPeladaController {
 
     return res.json(pelada);
   }
+
+  async highlightsOfGame(req, res) {
+    return res.json(1);
+  }
 }
 
 export default new UserPeladaController();

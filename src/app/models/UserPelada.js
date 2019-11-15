@@ -7,6 +7,10 @@ class UserPelada extends Model {
         userId: Sequelize.INTEGER,
         peladaId: Sequelize.INTEGER,
         userPresent: Sequelize.BOOLEAN,
+        score: Sequelize.FLOAT,
+        goals: Sequelize.INTEGER,
+        victories: Sequelize.INTEGER,
+        assistances: Sequelize.INTEGER,
       },
       {
         sequelize,

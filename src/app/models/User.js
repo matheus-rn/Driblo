@@ -6,10 +6,6 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         photoUrl: Sequelize.STRING,
-        goals: Sequelize.INTEGER,
-        victories: Sequelize.INTEGER,
-        assistances: Sequelize.INTEGER,
-        score: Sequelize.FLOAT,
       },
       {
         sequelize,

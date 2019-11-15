@@ -7,7 +7,6 @@ import Team from '../app/models/Team';
 import Goal from '../app/models/Goal';
 import databaseConfig from '../config/database';
 
-
 const models = [User, Pelada, UserPelada, Team, Goal];
 
 class Database {

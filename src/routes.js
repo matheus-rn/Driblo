@@ -27,10 +27,17 @@ routes.get(
   '/pelada/:id/users-presents',
   UserPeladaController.listPlayersPresent
 );
+
+routes.get(
+  '/pelada/:id/highlights-of-game',
+  UserPeladaController.highlightsOfGame
+);
+
 routes.put(
   '/users/:userId/pelada/:peladaId',
   UserPeladaController.confirmPresent
 );
+
 routes.delete(
   '/users/:userId/pelada/:peladaId',
   UserPeladaController.removeUserPelada

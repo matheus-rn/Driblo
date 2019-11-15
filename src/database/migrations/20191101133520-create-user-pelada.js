@@ -34,6 +34,31 @@ module.exports = {
         allowNull: false,
         defaultValue: false,
       },
+      score: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      victories: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      defeat: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      goals: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
+      assistances: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
