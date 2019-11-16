@@ -12,6 +12,10 @@ import RuleController from './app/controllers/RuleController';
 
 const routes = new Router();
 
+routes.get('/', (req, res) => {
+  res.render('index.html');
+});
+
 routes.post('/users', UserController.store);
 routes.get('/users/:id', UserController.index);
 routes.delete('/users/:id', UserController.destroy);
