@@ -25,6 +25,7 @@ routes.put('/pelada/:id', PeladaController.update);
 routes.post('/teams', TeamController.store);
 routes.post('/userTeam', UserTeamController.addUserTeam);
 routes.delete('/users/:userId/team/:teamId', UserTeamController.removeUserTeam);
+routes.get('/teams/:id', TeamController.index)
 
 routes.post('/goals', GoalController.store);
 routes.delete('/goals/:id', GoalController.destroy);
