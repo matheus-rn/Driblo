@@ -74,7 +74,7 @@ class GoalController {
         },
         {
           model: User,
-          as: 'assistant',
+          as: 'goalassistant',
           attributes: ['id', 'name']
         },
         {
