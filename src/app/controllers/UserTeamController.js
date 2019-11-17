@@ -1,4 +1,7 @@
 import UserTeam from '../models/UserTeam';
+import * as FormTeams from '../utils/formTeams';
+import Pelada from '../models/Pelada';
+
 
 class UserPeladaController {
   async addUserTeam(req, res) {
@@ -29,6 +32,17 @@ class UserPeladaController {
     });
 
     return res.json({ response });
+  }
+
+  async formTeams(req, res) {
+
+    const {players} = req.body;
+
+    const pelada = await Pelada.findOne({where: {id: req.params.id}});
+
+    const list = FormTeams.calcularTimes(players, pelada.quantityPlayers);
+
+    return res.json(list);
   }
 }
 

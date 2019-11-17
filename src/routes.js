@@ -25,14 +25,19 @@ routes.put('/pelada/:id', PeladaController.update);
 routes.post('/teams', TeamController.store);
 routes.post('/userTeam', UserTeamController.addUserTeam);
 routes.delete('/users/:userId/team/:teamId', UserTeamController.removeUserTeam);
+routes.get('/teams/:id', TeamController.index)
 
 routes.post('/goals', GoalController.store);
+routes.delete('/goals/:id', GoalController.destroy);
+routes.put('/goals/:id', GoalController.update);
+routes.get('/goals/:id', GoalController.index);
 
 routes.post('/peladaUser', UserPeladaController.addUserPelada);
 routes.get(
   '/pelada/:id/users-presents',
   UserPeladaController.listPlayersPresent
 );
+routes.post('/pelada/:id/formTeams', UserTeamController.formTeams);
 
 routes.get(
   '/pelada/:id/highlights-of-game',
@@ -41,7 +46,7 @@ routes.get(
 
 routes.put(
   '/users/:userId/pelada/:peladaId',
-  UserPeladaController.confirmPresent
+  UserPeladaController.togglePresence
 );
 
 routes.delete(
