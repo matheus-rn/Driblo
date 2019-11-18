@@ -51,21 +51,20 @@ class UserTeamController {
 
     if(pelada.quantityPlayers > 0){
 
-      const name_team_1 = ('Time ' + pelada.name + ' 1');
+      var i, j;
+      var team, user_team;
 
-      const name_team_2 = ('Time ' + pelada.name + ' 2');
+      // iterates over number of teams
+      for (i = 0; i < list.teams.length; i++) {
+        // creates a team for each iteration
+        team = await Team.create({ "name": ('Time ' + pelada.name + ' '+ (i+1)), "peladaId": pelada.id});
 
-      const team1 = await Team.create({ "name": name_team_1, "peladaId": pelada.id});
-
-      const team2 = await Team.create({ "name": name_team_2, "peladaId": pelada.id});
-
-      list.teams[0].forEach(player => {
-        UserTeam.create({"userId": player.id, "teamId": team1.id})
-      });
-
-      list.teams[1].forEach(player => {
-        UserTeam.create({"userId": player.id, "teamId": team2.id})
-      });
+        // iterates over number of members in each team
+        for (j = 0; j < list.teams[i].length; j++) {
+          // adds an user in a team for each iteration
+          user_team = await UserTeam.create({"userId": (list.teams[i][j].id), "teamId": team.id})
+        }
+      }
     }
 
     return res.json(list);
