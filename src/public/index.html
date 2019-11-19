@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Driblo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+</head>
+<body>
+  <h1 id="time1">0<h1>
+  <h1>X<h1>
+  <h1 id="time2">0<h1>
+  
+  <div>
+    <button id="botao1" type="submit">Gol</button>
+    <button id="botao2" type="submit">Gol</button>
+  </div>
+
+  <script type="text/javascript">
+    var socket = io('http://localhost:8001/scoreboard');
+    
+    function renderGol(message){
+      var gol = (parseInt(message.gol) + 1);
+      
+      $('#'+message.time).text(gol);
+    }
+
+    socket.on('receivedMessage', function(message){
+      renderGol(message);
+    })
+    
+    $('#botao1').click(function(){
+      var gol = $('#time1').text();
+      var messageObject = {
+        time: "time1",
+        gol: gol
+      }
+      renderGol(messageObject);
+      socket.emit('scoreboardMessage', messageObject);
+    });
+
+    $('#botao2').click(function(){
+      var gol = $('#time2').text();
+      var messageObject = {
+        time: "time2",
+        gol: gol
+      }
+      renderGol(messageObject);
+      socket.emit('scoreboardMessage', messageObject);
+    });
+  </script>
+</body>
+</html>
