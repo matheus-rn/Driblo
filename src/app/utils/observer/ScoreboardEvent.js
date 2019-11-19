@@ -8,7 +8,6 @@ export default class ScoreboardEvent {
   initEvents() {
     this.scoreboardSocket.on('connection', client => {
       client.on('scoreboardMessage', data => {
-        console.log(data);
         client.broadcast.emit('receivedMessage', data);
       });
     });

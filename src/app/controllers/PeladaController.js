@@ -13,7 +13,9 @@ class PeladaController {
     const peladaExist = await Pelada.findOne({ where: { id: req.params.id } });
 
     if (!peladaExist) {
-      return res.status(400).json({ error: 'Pelada não existe' });
+      return res
+        .status(400)
+        .json({ status: 400, message: 'Id must be present' });
     }
 
     const pelada = await Pelada.findOne({

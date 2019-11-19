@@ -1,6 +1,6 @@
 import UserTeam from '../models/UserTeam';
 
-class UserPeladaController {
+class UserTeamController {
   async addUserTeam(req, res) {
     const userTeam = await UserTeam.findOne({
       where: { user_id: req.body.userId, team_id: req.body.teamId },
@@ -32,4 +32,4 @@ class UserPeladaController {
   }
 }
 
-export default new UserPeladaController();
+export default new UserTeamController();

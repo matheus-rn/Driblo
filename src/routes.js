@@ -45,7 +45,7 @@ routes.get(
 
 routes.put(
   '/users/:userId/pelada/:peladaId',
-  UserPeladaController.confirmPresent
+  UserPeladaController.togglePresence
 );
 
 routes.delete(
