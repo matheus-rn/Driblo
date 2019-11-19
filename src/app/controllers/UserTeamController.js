@@ -1,9 +1,10 @@
 import UserTeam from '../models/UserTeam';
+import Team from '../models/Team'
 import * as FormTeams from '../utils/formTeams';
 import Pelada from '../models/Pelada';
 
 
-class UserPeladaController {
+class UserTeamController {
   async addUserTeam(req, res) {
     const userTeam = await UserTeam.findOne({
       where: { user_id: req.body.userId, team_id: req.body.teamId },
@@ -36,14 +37,39 @@ class UserPeladaController {
 
   async formTeams(req, res) {
 
-    const {players} = req.body;
+    const players = req.body.players;
 
     const pelada = await Pelada.findOne({where: {id: req.params.id}});
 
     const list = FormTeams.calcularTimes(players, pelada.quantityPlayers);
 
+    Team.destroy({
+      where: {
+          peladaId: pelada.id
+      }
+    })
+
+    if(pelada.quantityPlayers > 0){
+
+      var i, j;
+      var team, user_team;
+
+      // iterates over number of teams
+      for (i = 0; i < list.teams.length; i++) {
+        // creates a team for each iteration
+        team = await Team.create({ "name": ('Time ' + pelada.name + ' '+ (i+1)), "peladaId": pelada.id});
+
+        // iterates over number of members in each team
+        for (j = 0; j < list.teams[i].length; j++) {
+          // adds an user in a team for each iteration
+          user_team = await UserTeam.create({"userId": (list.teams[i][j].id), "teamId": team.id})
+        }
+      }
+    }
+
     return res.json(list);
+
   }
 }
 
-export default new UserPeladaController();
+export default new UserTeamController();
