@@ -27,7 +27,6 @@ class GoalController {
     return res.json(goal);
   }
 
-
   async destroy(req, res) {
     const goalExists = await Goal.findOne({ where: { id: req.params.id } });
 
@@ -51,10 +50,10 @@ class GoalController {
       where: { id: req.params.id },
     });
 
-    return res.json({update_goal});
+    return res.json({ update_goal });
   }
 
-  async index(req, res){
+  async index(req, res) {
     const goalExist = await Goal.findOne({ where: { id: req.params.id } });
 
     if (!goalExist) {
@@ -70,18 +69,18 @@ class GoalController {
         {
           model: User,
           as: 'goalscorer',
-          attributes: ['id', 'name']
+          attributes: ['id', 'name'],
         },
         {
           model: User,
           as: 'goalassistant',
-          attributes: ['id', 'name']
+          attributes: ['id', 'name'],
         },
         {
           model: Team,
           as: 'team',
-          attributes: ['id', 'name']
-        }
+          attributes: ['id', 'name'],
+        },
       ],
     });
 
@@ -89,7 +88,6 @@ class GoalController {
     const result_gol = JSON.parse(json);
 
     return res.json(result_gol);
-
   }
 }
 

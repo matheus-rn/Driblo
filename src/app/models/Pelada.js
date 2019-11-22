@@ -12,7 +12,7 @@ class Pelada extends Model {
         timeDuration: Sequelize.INTEGER,
         dateHourPelada: Sequelize.DATE,
         playersLimit: Sequelize.INTEGER,
-        quantityPlayers: Sequelize.INTEGER
+        quantityPlayers: Sequelize.INTEGER,
       },
       {
         sequelize,

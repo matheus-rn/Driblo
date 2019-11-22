@@ -24,8 +24,8 @@ function makeSwaps(players, pace, tolerance = 3, probSwap = 0.5) {
 }
 
 function randTeam(players) {
-  const firstWave = 1,
-    secondWave = 4;
+  const firstWave = 1;
+  const secondWave = 4;
 
   makeSwaps(players, firstWave);
   makeSwaps(players, secondWave);
@@ -35,15 +35,18 @@ function randTeam(players) {
 
 function separarTimes(parametros) {
   // ordena jogadores por overall, e randomiza um pouco
-  var sortedPlayers = randTeam(
+  const sortedPlayers = randTeam(
     parametros.jogadores.sort(function compare(a, b) {
       return a.overall - b.overall;
     })
   );
 
-  let teams = [];
+  const teams = [];
   let reserve;
-  var i; var subset; var startSection; var endSection;
+  var i;
+  let subset;
+  let startSection;
+  let endSection;
 
   // inicia todos os times como vazio
   for (var i = 0; i < parametros.qtdTimes; i++) {
@@ -70,12 +73,12 @@ function separarTimes(parametros) {
   reserve = sortedPlayers.slice(endSection, parametros.jogadores.length + 1);
 
   // embrulha o retorno em um objeto com os times e os reservas
-  return { teams: teams, reserve: reserve };
+  return { teams, reserve };
 }
 
 export function calcularTimes(jogadores, pessoasPorTime) {
   const totalPessoas = jogadores.length;
-  let qtdTimes = parseInt(totalPessoas / pessoasPorTime);
+  const qtdTimes = parseInt(totalPessoas / pessoasPorTime);
 
   // debug
   // console.log("quantos times: " + qtdTimes);
@@ -83,8 +86,8 @@ export function calcularTimes(jogadores, pessoasPorTime) {
   // console.log("jogadores por time: " + pessoasPorTime);
 
   return separarTimes({
-    jogadores: jogadores,
+    jogadores,
     tamTimes: pessoasPorTime,
-    qtdTimes: qtdTimes,
+    qtdTimes,
   });
 }

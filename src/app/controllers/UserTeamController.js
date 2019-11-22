@@ -1,3 +1,4 @@
+import { async } from 'q';
 import UserTeam from '../models/UserTeam';
 import Team from '../models/Team';
 import * as FormTeams from '../utils/formTeams';
@@ -52,14 +53,14 @@ class UserTeamController {
       for (let i = 0; i < list.teams.length; i++) {
         // creates a team for each iteration
         const team = await Team.create({
-          name: `Time ${pelada.name} ${i + 1}`,
+          name: `Time ${i + 1}`,
           peladaId: pelada.id,
         });
 
         // iterates over number of members in each team
         for (let j = 0; j < list.teams[i].length; j++) {
           // adds an user in a team for each iteration
-          const user_team = await UserTeam.create({
+          await UserTeam.create({
             userId: list.teams[i][j].id,
             teamId: team.id,
           });

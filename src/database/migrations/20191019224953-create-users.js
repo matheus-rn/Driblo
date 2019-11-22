@@ -14,6 +14,9 @@ module.exports = {
       photo_url: {
         type: Sequelize.STRING,
       },
+      overall: {
+        type: Sequelize.INTEGER,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

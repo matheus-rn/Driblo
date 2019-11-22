@@ -9,7 +9,7 @@ class TeamController {
     return res.json(team);
   }
 
-  async index(req, res){
+  async index(req, res) {
     const teamExist = await Team.findOne({ where: { id: req.params.id } });
 
     if (!teamExist) {
@@ -25,23 +25,20 @@ class TeamController {
         {
           model: Pelada,
           as: 'pelada',
-          attributes: ['id', 'name']
+          attributes: ['id', 'name'],
         },
         {
           model: Goal,
-          as: 'goals'
-        }
-      ]
+          as: 'goals',
+        },
+      ],
     });
 
     const json = JSON.stringify(team);
     const result_team = JSON.parse(json);
 
     return res.json(result_team);
-
   }
 }
-
-
 
 export default new TeamController();
