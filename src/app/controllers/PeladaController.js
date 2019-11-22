@@ -22,7 +22,6 @@ class PeladaController {
       where: {
         id: req.params.id,
       },
-      attributes: ['id', 'name', 'photoUrl'],
       include: [
         {
           model: User,
